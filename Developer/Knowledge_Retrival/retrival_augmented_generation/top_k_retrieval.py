@@ -10,9 +10,12 @@ def get_top_k_context(similarity_matrix_path, raw_chunk_path, top_k=3):
     mean_scores= np.mean(scores, axis=1)
     top_indices= np.argsort(mean_scores)[::-1][:top_k]
     
+    print("Top indices:", top_indices)
+    
     with open(raw_chunk_path, 'r', encoding='utf-8') as f:
         raw_chunk= json.load(f)
         
+    print("Similarity matrix shape:", scores.shape)
     
     context_list=[]
     for idx in top_indices:
@@ -24,6 +27,8 @@ def get_top_k_context(similarity_matrix_path, raw_chunk_path, top_k=3):
         if isinstance(item, dict):
             item= item.get("text", str(item))
         context_list.append(str(item))
+        
+        print("Number of chunks:", len(raw_chunk))
     
     augmented_context= "\n\n".join(context_list)
     return augmented_context
@@ -33,5 +38,6 @@ if __name__=="__main__":
     raw_chunk_path=r'Developer\data\chunks.json'
     extracted_context=get_top_k_context(similarity_matrix_path, raw_chunk_path, top_k=3)
     print("Extracted Context data:\n",extracted_context )
-        
-        
+    
+    
+    

@@ -1,8 +1,6 @@
 from langchain_classic.embeddings import HuggingFaceEmbeddings
-from Users.query.user_Question import questionAsking
+from Users.user_Question import questionAsking
 from Stores.storage import save_question_vectors
-
-
 
 model_name= "sentence-transformers/all-mpnet-base-v2"  
 model_kwargs = {'device': 'cpu'}  
@@ -15,6 +13,6 @@ if __name__== "__main__":
     encode_kwargs=encode_kwargs  
     )
     question= questionAsking()
-    question_vectorization= hf.embed_documents(question)
+    question_vectorization= hf.embed_query(question)
     save_question_vectors(question_vectorization)
 

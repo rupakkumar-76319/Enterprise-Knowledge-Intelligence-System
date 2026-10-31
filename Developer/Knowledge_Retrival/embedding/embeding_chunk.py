@@ -3,6 +3,7 @@ from langchain_community.embeddings import HuggingFaceEmbeddings
 from Stores.storage import load_chunks, save_vectors
 
 chunks=load_chunks()
+print("Number of the chunk: ", len(chunks))
 
 
 model_name = "sentence-transformers/all-mpnet-base-v2"  
@@ -15,6 +16,8 @@ encode_kwargs=encode_kwargs
 )
 
 chunk_text= [c.page_content for c in chunks]
+print("Number of the chunk_text: ", len(chunk_text))
 chunks_vectorization= hf.embed_documents(chunk_text)
 
 save_vectors(chunks_vectorization)
+

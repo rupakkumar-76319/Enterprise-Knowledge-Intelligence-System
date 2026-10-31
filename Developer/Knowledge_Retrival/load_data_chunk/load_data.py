@@ -1,6 +1,6 @@
 from langchain_community.document_loaders import PyPDFLoader
-from langchain_text_splitters import RecursiveCharacterTextSplitter
-from Developer.data.config import PDF_PATH
+from langchain_text_splitters import RecursiveCharacterTextSplitter, CharacterTextSplitter, TokenTextSplitter
+from Developer.data.config import DOCUMENT_PATH
 from Stores.storage import save_chunks
 
 def load_data(files):
@@ -8,20 +8,21 @@ def load_data(files):
     print(f"Total page is : {len(docs)}")
     return docs
 
+#CharacterTextSplitter, RecursiveCharacterTextSplitter, and TokenTextSplitter
+
 def docsSplitter(docs):
     textSplitter= RecursiveCharacterTextSplitter(
-    chunk_size= 1000, 
+    chunk_size= 850, 
     chunk_overlap= 200,
     length_function= len,
     is_separator_regex= False
     )
     chunks= textSplitter.split_documents(docs)
-    print(len(chunks))
-    print(chunks[637])
+    print(f"Length of Chunk on the basis of {textSplitter}: ",len(chunks))
     return chunks
 
 if __name__== "__main__":
-    raw_data= PyPDFLoader(PDF_PATH)
+    raw_data= (DOCUMENT_PATH)
     docs=load_data(raw_data)
     chunks=docsSplitter(docs)
     save_chunks(chunks)

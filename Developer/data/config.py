@@ -1,1 +1,1 @@
-PDF_PATH = r"Developer\data\document\Persuasion.pdf"
+DOCUMENT_PATH = r"Developer\data\document\Persuasion.fmjl"

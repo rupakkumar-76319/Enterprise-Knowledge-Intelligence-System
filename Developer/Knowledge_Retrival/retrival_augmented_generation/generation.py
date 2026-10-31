@@ -1,6 +1,7 @@
 import os
 from dotenv import load_dotenv
 from Developer.Knowledge_Retrival.retrival_augmented_generation.top_k_retrieval import get_top_k_context
+from Users.user_Question import questionAsking
 from google import genai
 
 load_dotenv()
@@ -35,7 +36,7 @@ def generate_answer(prompt: str, model_name: str = "gemini-2.5-flash") -> str:
 def main():
     similarity_matrix_path=r'Developer\data\retrieval.json'
     raw_chunk_path=r'Developer\data\chunks.json'
-    query=input("Type your Question...")
+    query= questionAsking()
     context= get_top_k_context(similarity_matrix_path, raw_chunk_path, top_k=3)
     prompt= create_rag_prompt(context, query)
     answer= generate_answer(prompt)
