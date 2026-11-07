@@ -1,8 +1,15 @@
 import os
 from dotenv import load_dotenv
-from Developer.Knowledge_Retrival.retrival_augmented_generation.top_k_retrieval import get_top_k_context
-from Users.user_Question import questionAsking
 from google import genai
+from Users.user_Question import questionAsking
+from Users.user_Question_embedding import embed_question
+from Developer.Knowledge_Retrival.retrival_augmented_generation.top_k_retrieval import get_top_k_context
+from Developer.Knowledge_Retrival.retrival_augmented_generation.retrieval import cosine_similarties
+from Stores.storage import load_vectors, load_chunks
+import numpy as np
+
+
+
 
 load_dotenv()
 
@@ -34,12 +41,13 @@ def generate_answer(prompt: str, model_name: str = "gemini-2.5-flash") -> str:
     return response.text
 
 def main():
-    similarity_matrix_path=r'Developer\data\retrieval.json'
-    raw_chunk_path=r'Developer\data\chunks.json'
     query= questionAsking()
-    context= get_top_k_context(similarity_matrix_path, raw_chunk_path, top_k=3)
-    prompt= create_rag_prompt(context, query)
-    answer= generate_answer(prompt)
+    query_vector= embed_question(query)
+    scores= cosine_similarties(load_vectors(), query_vector)[:,0]
+    top_score=np.argsort(scores)[::-1][:3]
+    chunk=load_chunks()
+    context= "\n\n".join(chunk[i].page_content for i in top_score)
+    answer= generate_answer(create_rag_prompt(context, query))
     print("Your answer is:", answer)
     
 if __name__== "__main__":

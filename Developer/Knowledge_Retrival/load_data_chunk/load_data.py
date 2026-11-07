@@ -1,10 +1,11 @@
-from langchain_community.document_loaders import PyPDFLoader
+from Developer.spilliting.base import FmjlLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter, CharacterTextSplitter, TokenTextSplitter
 from Developer.data.config import DOCUMENT_PATH
 from Stores.storage import save_chunks
 
-def load_data(files):
-    docs= files.load()
+def load_data(file_path):
+    loader = FmjlLoader(file_path)
+    docs= loader.load()
     print(f"Total page is : {len(docs)}")
     return docs
 

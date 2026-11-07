@@ -5,7 +5,6 @@ from Stores.storage import load_chunks, save_vectors
 chunks=load_chunks()
 print("Number of the chunk: ", len(chunks))
 
-
 model_name = "sentence-transformers/all-mpnet-base-v2"  
 model_kwargs = {'device': 'cpu'}  
 encode_kwargs = {'normalize_embeddings': False}  
