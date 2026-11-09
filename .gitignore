@@ -3,3 +3,7 @@ __pycache__
 *.pyc
 .vscode/
 Developer\data\document\Persuasion.pdf
+Developer\data\document\Persuasion.fmjl
+Developer\data\chunks.json
+Developer\data\vectors.json
+Test

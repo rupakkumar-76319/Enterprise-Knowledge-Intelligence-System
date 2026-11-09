@@ -1,0 +1,246 @@
+Persuasion test questions
+
+Page = the "page" value in chunks.json. The PDF page is this number + 1.
+
+Scoring rules
+- Recall: 1 if the 3 retrieved chunks contain the main fact of the correct answer, otherwise 0.
+- Precision: how many of the 3 chunks contain at least part of the correct answer.
+- Faithfulness: 1 if everything in "Answer got" is supported by the chunks. A refusal counts as 1.
+- Correctnes: 1 if "Answer got" gives the main fact of the correct answer, otherwise 0.
+- Chunk numbers are positions in chunks.json, counting from 0.
+
+1. Question: Who is Lady Russell?
+   Correct answer: Anne's godmother and close friend. She is a widow and was a very close friend of Anne's late mother.
+   Page: 17-19
+   Answer got: I do not have sufficient information in the knowledge base to answer this.
+   Recall: 0
+   Precision: 0/3
+   Faithfulness: 1
+   Correctnes: 0
+   Note: The answer is in chunks 17 and 20, which were not retrieved. Chunk 39 describes her character, so a partial answer was possible.
+   Answer i got at top 50:
+
+2. Question: Who does Anne Elliot marry?
+   Correct answer: Captain Frederick Wentworth.
+   Page: 332
+   Answer got: I do not have sufficient information in the knowledge base to answer this.
+   Recall: 0
+   Precision: 0/3
+   Faithfulness: 1
+   Correctnes: 0
+   Note: Chunk 559 is about Lady Russell hoping Anne will marry Mr. Elliot. Gemini was right not to use it.
+   Answer i got at top 50:
+
+3. Question: What accident happens to Louisa Musgrove at Lyme?
+   Correct answer: She falls on the pavement of the Lower Cobb and is picked up unconscious.
+   Page: 152
+   Answer got: The fall from the Cobb.
+   Recall: 1
+   Precision: 1/3
+   Faithfulness: 1
+   Correctnes: 1
+   Note: Correct but very short. Only chunk 577 mentions the fall.
+   Answer i got at top 50:
+
+4. Question: Faithfulness Faithfulness
+   Correct answer: He says he is "half agony, half hope", still loves her, and offers himself to her again.
+   Page: 317-318
+   Answer got: I do not have sufficient information in the knowledge base to answer this.
+   Recall: 0
+   Precision: 0/3
+   Faithfulness: 1
+   Correctnes: 0
+   Note: The chunks are about other letters. His letter to Anne is in chunk 819.
+   Answer i got at top 50:
+
+5. Question: What does Mrs. Smith reveal about Mr. Elliot's character?
+   Correct answer: He is "black at heart, hollow and black". He has no sense of justice or compassion, and he abandons people he helped to ruin.
+   Page: 268
+   Answer got: Mrs. Smith reveals that Mr. Elliot was very unfeeling in his conduct towards her, very deficient both in justice and compassion. She also indicates that he led his friend into expenses.
+   Recall: 1
+   Precision: 1/3
+   Faithfulness: 1
+   Correctnes: 1
+   Note: Chunk 717 has the answer.
+   Answer i got at top 50:
+
+6. Question: Why did Anne break off her engagement to Captain Wentworth?
+   Correct answer: Lady Russell's repeated advice persuaded her that the engagement was wrong, imprudent, and unlikely to succeed.
+   Page: 47
+   Answer got: I do not have sufficient information in the knowledge base to answer this.
+   Recall: 0
+   Precision: 0/3
+   Faithfulness: 1
+   Correctnes: 0
+   Note: Chunk 303 is about Anne refusing Charles Musgrove, a different proposal. The answer is in chunk 94.
+   Answer i got at top 50:
+
+7. Question: What injury does little Charles Musgrove suffer when he falls?
+   Correct answer: A dislocated collar-bone and an injury to his back.
+   Page: 79-80
+   Answer got: I do not have sufficient information in the knowledge base to answer this.
+   Recall: 0
+   Precision: 1/3
+   Faithfulness: 1
+   Correctnes: 0
+   Note: Chunk 192 only mentions a possible spine injury. The collar-bone is in chunks 185-186.
+   Answer i got at top 50:
+
+8. Question: Which battle did Admiral Croft fight in?
+   Correct answer: The Battle of Trafalgar (the book calls it "the Trafalgar action").
+   Page: 40
+   Answer got: I do not have sufficient information in the knowledge base to answer this.
+   Recall: 0
+   Precision: 0/3
+   Faithfulness: 1
+   Correctnes: 0
+   Note: Near miss. Chunk 76 was retrieved, and the answer is in chunk 75, right before it. Both are on page 40, so checking by page alone would wrongly count this as found.
+   Answer i got at top 50:
+
+9. Question: How did Captain Wentworth get promoted to commander?
+   Correct answer: He was made commander because of the action off St. Domingo.
+   Page: 45
+   Answer got: I do not have sufficient information in the knowledge base to answer this.
+   Recall: 0
+   Precision: 0/3
+   Faithfulness: 1
+   Correctnes: 0
+   Note: The answer is in chunk 87, which was retrieved for question 12 instead.
+   Answer i got at top 50:
+
+10. Question: Why does Sir Walter Elliot have to leave Kellynch Hall?
+    Correct answer: He is deep in debt, and he would rather leave than live there on a much smaller budget.
+    Page: 23, 29
+   Answer got: I do not have sufficient information in the knowledge base to answer this.
+   Recall: 0
+   Precision: 0/3
+   Faithfulness: 1
+   Correctnes: 0
+   Note: Two chunks are about Mr. Elliot. The debts are in chunks 32-33.
+   Answer i got at top 50:
+
+11. Question: Who does Louisa Musgrove get engaged to?
+    Correct answer: Captain Benwick.
+    Page: 241
+   Answer got: Louisa Musgrove gets engaged to Captain Benwick.
+   Recall: 1
+   Precision: 1/3
+   Faithfulness: 1
+   Correctnes: 1
+   Note: Chunk 568 has the answer.
+   Answer i got at top 50:
+
+12. Question: How old was Anne when she got engaged to Captain Wentworth?
+    Correct answer: Nineteen.
+    Page: 46
+   Answer got: I do not have sufficient information in the knowledge base to answer this.
+   Recall: 0
+   Precision: 0/3
+   Faithfulness: 1
+   Correctnes: 0
+   Note: Chunk 87 starts the right story, but her age is 4 chunks later, in chunk 91.
+   Answer i got at top 50:
+
+13. Question: Who is Mrs. Clay?
+    Correct answer: Mr. Shepherd's daughter. She returned to her father's house with two children after an unhappy marriage and became close to Elizabeth.
+    Page: 32
+   Answer got: Mrs. Clay is a companion to Miss Elliot, whom Lady Russell considers unequal and dangerous. She is also staying in the household of "my father."
+   Recall: 0
+   Precision: 2/3
+   Faithfulness: 1
+   Correctnes: 0
+   Note: Partly right. The chunks show she is Elizabeth's companion, but not that she is Mr. Shepherd's daughter (chunk 55).
+   Answer i got at top 50:
+
+14. Question: Who rents Kellynch Hall from Sir Walter?
+    Correct answer: Admiral Croft and his wife, Mrs. Croft.
+    Page: 51, 73
+   Answer got: I do not have sufficient information in the knowledge base to answer this.
+   Recall: 1
+   Precision: 1/3
+   Faithfulness: 1
+   Correctnes: 0
+   Note: Chunk 82 shows the Crofts want to rent the house, so Gemini could have answered. This is a prompt problem, not a retrieval problem.
+   Answer i got at top 50:
+
+15. Question: What are the names of Sir Walter Elliot's daughters?
+    Correct answer: Elizabeth, Anne, and Mary.
+    Page: 16
+   Answer got: Sir Walter Elliot's daughters are Anne and Elizabeth.
+   Recall: 0
+   Precision: 2/3
+   Faithfulness: 1
+   Correctnes: 0
+   Note: Mary is missing. The full list is in chunk 10.
+   Answer i got at top 50:
+
+16. Question: Who is Mary Elliot's husband?
+    Correct answer: Charles Musgrove, the son and heir of Charles Musgrove of Uppercross.
+    Page: 16
+   Answer got: I do not have sufficient information in the knowledge base to answer this.
+   Recall: 0
+   Precision: 0/3
+   Faithfulness: 1
+   Correctnes: 0
+   Note: Near miss. Chunk 9 was retrieved, and the answer is in chunk 10, right after it.
+   Answer i got at top 50:
+
+17. Question: Where do Sir Walter and Elizabeth live after leaving Kellynch Hall?
+    Correct answer: In Bath, in a house in Camden Place.
+    Page: 30, 168
+   Answer got: I do not have sufficient information in the knowledge base to answer this.
+   Recall: 0
+   Precision: 0/3
+   Faithfulness: 1
+   Correctnes: 0
+   Note: Near miss. Chunk 48 lists London, Bath, or the country, and the next chunk (49) says Bath.
+   Answer i got at top 50:
+
+18. Question: Who is the heir to Sir Walter Elliot?
+    Correct answer: William Walter Elliot (Mr. Elliot), the heir presumptive.
+    Page: 21
+   Answer got: William Walter Elliot, Esq. is the heir presumptive.
+   Recall: 1
+   Precision: 2/3
+   Faithfulness: 1
+   Correctnes: 1
+   Note: Chunk 12 has the answer, and chunk 30 supports it.
+   Answer i got at top 50:
+
+19. Question: Why is Captain Benwick grieving when Anne meets him?
+    Correct answer: His fiancee, Fanny Harville, died while he was at sea.
+    Page: 136
+   Answer got: I do not have sufficient information in the knowledge base to answer this.
+   Recall: 0
+   Precision: 0/3
+   Faithfulness: 1
+   Correctnes: 0
+   Note: Chunk 333 says he is sad but not why. The answer is in chunk 331, two chunks earlier.
+   Answer i got at top 50:
+
+20. Question: What dress does Anne Elliot wear at her wedding?
+    Correct answer: The book does not say. The system should reply that it does not have sufficient information.
+    Page: None
+   Answer got: I do not have sufficient information in the knowledge base to answer this.
+   Recall: N/A
+   Precision: N/A
+   Faithfulness: 1
+   Correctnes: 1
+   Note: The book has no answer, so refusing is correct.
+   Answer i got at top 50:
+
+
+Summary (baseline)
+Setup: RecursiveCharacterTextSplitter 850/200, all-mpnet-base-v2, top 3 chunks, gemini-2.5-flash.
+Scored by Claude on 2026-11-07, using the same top 3 chunks that generation.py retrieves.
+
+Recall:       5/19  (26%)   Question 20 is not counted, because it has no answer.
+Precision:   11/57  (19%)   Useful chunks out of all chunks retrieved for questions 1-19.
+Faithfulness: 20/20 (100%)
+Correctnes:    5/20 (25%)
+
+What this means
+- The main problem is retrieval. For 14 of the 19 questions, the answer was not in the 3 chunks.
+- Gemini does not make things up. When the answer is missing, it says so.
+- Question 14 is the only case where the chunks had the answer but Gemini refused, so the prompt may be a little too strict.
+- Questions 8, 16 and 17 are near misses: the answer was in the chunk right next to a retrieved one. Bigger chunks or parent-child retrieval may help with these.

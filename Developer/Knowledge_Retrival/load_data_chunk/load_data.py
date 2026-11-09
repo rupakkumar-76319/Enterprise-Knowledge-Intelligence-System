@@ -13,8 +13,8 @@ def load_data(file_path):
 
 def docsSplitter(docs):
     textSplitter= RecursiveCharacterTextSplitter(
-    chunk_size= 850, 
-    chunk_overlap= 200,
+    chunk_size= 1500, 
+    chunk_overlap= 225,
     length_function= len,
     is_separator_regex= False
     )
